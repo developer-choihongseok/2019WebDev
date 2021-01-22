@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1. list 활용  -->
+	<!-- <bean id="collectionBean" class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 성동구 행당동</value>
+				<value>부산시 해운대구 해운동</value>
+				<value>대구시 달서구 월성동</value>
+				<value>대전시 유성구 상리동</value>
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- 2. set 활용  -->
+	<!-- <bean id="collectionBean" class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<set value-type="java.lang.String">
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 성동구 행당동</value>
+				<value>서울시 성동구 성수동</value>
+				<value>서울시 성동구 성수동</value>
+				<value>부산시 해운대구 해운동</value>
+				<value>대구시 달서구 월성동</value>
+				<value>대전시 유성구 상리동</value>
+			</set>
+		</property>
+	</bean> -->
+	
+	<!-- 3. map 활용  -->
+	<!-- <bean id="collectionBean" class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<map>
+				<entry>
+					<key><value>김연아</value></key>
+					<value>서울시 강남구 역삼동</value>
+				</entry>
+				<entry>
+					<key><value>박지성</value></key>
+					<value>서울시 성동구 행당동</value>
+				</entry>
+				<entry>
+					<key><value>이승엽</value></key>
+					<value>부산시 해운대구 해운동</value>
+				</entry>
+				<entry>
+					<key><value>박찬호</value></key>
+					<value>대구시 달서구 월성동</value>
+				</entry>
+				<entry>
+					<key><value>최홍석</value></key>
+					<value>대전시 유성구 상리동</value>
+				</entry>
+			</map>
+		</property>
+	</bean> -->
+	
+	<!-- 4. props 활용  -->
+	<bean id="collectionBean" class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<props>
+				<prop key="김연아">서울시 강남구 역삼동</prop>
+				<prop key="박지성">서울시 성동구 행당동</prop>
+				<prop key="이승엽">부산시 해운대구 해운동</prop>
+				<prop key="박찬호">대구시 달서구 월성동</prop>
+				<prop key="최홍석">대전시 유성구 상리동</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

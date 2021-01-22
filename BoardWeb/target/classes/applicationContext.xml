@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- #####  1. xml 설정 파일을 활용하는 방법 ##### -->
+ 	<!-- 아래 두 줄은 TV tv = new SamsungTV() 한 것과 같다. -->
+	<!-- <bean id="tv" class="polymorphism.SamsungTV" 
+	init-method="initMethod" destroy-method="destroyMethod" lazy-init="true"/> -->
+	
+	<!-- 1. 생성자 인젝션 -->
+<!-- 	<bean id="tv" class="polymorphism.SamsungTV"> 
+		<constructor-arg index="0" ref="apple"/>
+		<constructor-arg index="1" value="3500000" />
+	</bean>  -->
+	
+	<!-- 2. Setter 인젝션 : 동작하려면 Setter 메서드뿐만 아니라 기본 생성자도 반드시 필요하다!! -->
+<!-- 	<bean id="tv" class="polymorphism.SamsungTV">
+		<property name="speaker" ref="apple"></property>
+		<property name="price" value="3500000"></property>
+	</bean> -->
+	
+	<!-- 3. Setter 인젝션 이용 시, p 네임스페이스 활용  -->
+	<!-- <bean id="tv" class="polymorphism.SamsungTV" p:speaker-ref="sony" p:price="2700000" /> -->
+	
+<!-- 	<bean id="sony" class="polymorphism.SonySpeaker" />
+	<bean id="apple" class="polymorphism.AppleSpeaker" /> -->
+	
+	<!-- #####  2. 어노테이션을 활용하는 방법 ##### -->
+	<!-- <context:component-scan base-package="polymorphism" />
+	<bean id="speaker" class="polymorphism.AppleSpeaker" /> -->
+	
+	<!-- **************************************************************  -->
+	<!-- Board 테이블 사용 -->
+	
+	<!-- 어노테이션 기반일때 사용 -->
+	<!-- <context:component-scan base-package="com.springbook.biz" /> -->
+	
+	<!-- 설정 파일(xml) 기반 -->
+	<!-- Setter 인젝션(property 엘리먼트 활용) -->
+<!-- 	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean> -->
+	
+	<!-- Setter 인젝션 (p namespace 활용) -->
+<!-- 	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl"
+		p:userDAO-ref="userDAO"/> -->
+	
+<!-- 	<bean id="userDAO" class="com.springbook.biz.user.impl.UserDAO"/> -->
+
+
+	<!-- $$$$$$$$$$ -->
+	<context:component-scan base-package="com.springbook.biz" />
+	
+	<aop:aspectj-autoproxy />
+	
+	<!-- P143 ~ P170 -->
+<!-- 	<bean id="log" class="com.springbook.biz.common.LogAdvice"/>
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))" />
+		<aop:aspect ref="log">
+			<aop:around pointcut-ref="getPointcut" method="printLog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- P172,P185 before advice-->
+<!-- 	<bean id="before" class="com.springbook.biz.common.BeforeAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		<aop:aspect ref="before">
+			<aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- P174, P187 after-returning advice -->
+<!-- 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice" />
+	<aop:config>
+		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))" />
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- P176, P188 after-throwing advice -->
+<!-- 	<bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptObj"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- P178 after advice -->
+<!-- 	<bean id="after" class="com.springbook.biz.common.AfterAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		<aop:aspect ref="after">
+			<aop:after pointcut-ref="allPointcut" method="finallyLog"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- P180, P192 around advice -->
+<!-- 	<bean id="around" class="com.springbook.biz.common.AroundAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))" />
+		<aop:aspect ref="around">
+			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+		</aop:aspect>
+	</aop:config> -->
+
+	
+	
+	
+
+
+</beans>
