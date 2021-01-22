@@ -1,1 +1,2 @@
-# 2019WebDev_스프링
+# 2019WebDev
+Spring
